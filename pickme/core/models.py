@@ -1,4 +1,3 @@
-from re import M
 from django.db import models
 
 # create a sex option 
@@ -65,4 +64,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
-    
+
