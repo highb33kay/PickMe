@@ -32,13 +32,11 @@ class PickUpLine(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     line = models.CharField(max_length=100)
     likes = models.IntegerField(default=0)
-    gender = models.Cha
-    # sort by gender
 
     def __str__(self):
         return self.line
     
-    # sort by gender
+    # I want to sort the Pick Up Lines by gender
 
     
 class Like(models.Model):
