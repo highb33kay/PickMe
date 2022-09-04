@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from re import A
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,27 +78,29 @@ WSGI_APPLICATION = 'pickme.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# Checking if the DEBUG variable is set to True. If it is, then it will set the STATIC_ROOT variable
+# to the staticfiles directory.
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# if DEBUG:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-# postgresql setup for production
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'pickdb',
-            'USER': 'highb33kay@pickdb',
-            'PASSWORD': config('DATABASE_PASSWORD'),
-            'HOST': 'pickdb.postgres.database.azure.com',
-            'PORT': '5432',
-            'OPTIONS': { 'sslmode': 'require' }
-        }
-    }
+}
+# # postgresql setup for production
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'pickdb',
+#             'USER': 'highb33kay@pickdb',
+#             'PASSWORD': config('DATABASE_PASSWORD'),
+#             'HOST': 'pickdb.postgres.database.azure.com',
+#             'PORT': '5432',
+#             'OPTIONS': { 'sslmode': 'require' }
+#         }
+#     }
     
 
 
@@ -151,4 +154,5 @@ if DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# static files in production
+# custom user model
+AUTH_USER_MODEL = 'core.User'
