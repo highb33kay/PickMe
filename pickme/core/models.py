@@ -28,40 +28,35 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     
-# # create a pick model
-# class PickUpLine(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     line = models.CharField(max_length=100)
-#     likes = models.IntegerField(default=0)
-#     gender = models.ForeignKey(User, on_delete=models.CASCADE)
-#     # sort by gender
+# create a pick model
+class PickUpLine(models.Model):
+    line = models.CharField(max_length=100)
+    likes = models.IntegerField(default=0)
+    # sort by gender
 
-#     def __str__(self):
-#         return self.line
+    def __str__(self):
+        return self.line
     
-#     # sort by gender
+    # sort by gender
 
     
-# class Like(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     pick = models.ForeignKey(PickUpLine, on_delete=models.CASCADE)
-#     like = models.BooleanField(default=False)
+class Like(models.Model):
+    pick = models.ForeignKey(PickUpLine, on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
 
-#     def __str__(self):
-#         return self.like
+    def __str__(self):
+        return self.like
 
-# class Dislike(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     pick = models.ForeignKey(PickUpLine, on_delete=models.CASCADE)
-#     dislike = models.BooleanField(default=False)
+class Dislike(models.Model):
+    pick = models.ForeignKey(PickUpLine, on_delete=models.CASCADE)
+    dislike = models.BooleanField(default=False)
 
-#     def __str__(self):
-#         return self.dislike
+    def __str__(self):
+        return self.dislike
     
-# class Comment(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     pick = models.ForeignKey(PickUpLine, on_delete=models.CASCADE)
-#     comment = models.CharField(max_length=100)
+class Comment(models.Model):
+    pick = models.ForeignKey(PickUpLine, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=100)
 
-#     def __str__(self):
-#         return self.comment
+    def __str__(self):
+        return self.comment
