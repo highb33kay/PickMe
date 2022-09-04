@@ -1,3 +1,2 @@
-from django.shortcuts import render
+from .filters import PickFilter
 
-# Create your views here.

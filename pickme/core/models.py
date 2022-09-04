@@ -1,5 +1,4 @@
 from django.db import models
-
 # create a sex option 
 
 
@@ -14,7 +13,7 @@ class User(models.Model):
         (FEMALE, 'Female'),
         (NONBINARY, 'Non-Binary')
     ]
-    name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     password = models.CharField(max_length=100)
     gender = models.CharField(
@@ -25,14 +24,14 @@ class User(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.username
     
 # create a pick model
 class PickUpLine(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     line = models.CharField(max_length=100)
     likes = models.IntegerField(default=0)
-    gender = models.Cha
+    gender = models.ForeignKey(User, on_delete=models.CASCADE)
     # sort by gender
 
     def __str__(self):
@@ -64,4 +63,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
-
