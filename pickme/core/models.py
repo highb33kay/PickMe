@@ -2,8 +2,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 # create a sex option 
 
+# create a  user profile model
+class Profile(models.Model):
+    pass
+    
 
-# Create your models here.
 # create a user model
 class User(AbstractUser):
 #    Creating a sex option for the user.

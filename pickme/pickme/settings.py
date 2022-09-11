@@ -43,6 +43,15 @@ INSTALLED_APPS = [
     # core apps
     'pickme',
     'core',
+    
+    # social authentication
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
+    # google authentication
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +171,25 @@ AUTH_USER_MODEL = 'core.User'
 # django_project/settings.py
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+AUTHENTICATION_BACKENDS = (
+ #used for default signin such as loggin into admin panel
+ 'django.contrib.auth.backends.ModelBackend', 
+  
+ #used for social authentications
+ 'allauth.account.auth_backends.AuthenticationBackend',
+ )
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}

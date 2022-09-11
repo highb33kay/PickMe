@@ -1,10 +1,15 @@
 <!-- templates/registration/signup.html -->
 {% extends "base.html" %}
+{% load static %}
+{% load socialaccount %}
 
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
 <h2>Sign Up</h2>
+<div class=" signin text-center">
+    <a href="{% provider_login_url 'google' %}" class="text-dark"><img src="{% static "https://redbooth.com/assets/btn_google_signin_light_normal_web_2x-1811e95030cddcf518b8c2e94f9af62cc21d839bf7f347c99b6989e3cf589324.png" %}" style="width:14rem; height:auto"></a>
+  </div>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
