@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import User
+from .models import User, PickUpLine
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
@@ -13,3 +13,12 @@ class CustomUserAdmin(UserAdmin):
     
 
 admin.site.register(User, CustomUserAdmin)
+
+# register pickup line model
+class PickUpLineAdmin(admin.ModelAdmin):
+    list_display = ('line', 'likes')
+    list_filter = ('likes',)
+    search_fields = ('line',)
+    ordering = ('likes',)
+    
+admin.site.register(PickUpLine, PickUpLineAdmin)
